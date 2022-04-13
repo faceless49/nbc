@@ -1,0 +1,8 @@
+.comments {
+  &_wrap + div {
+    margin-top: 15px;
+  }
+  &_title {
+    font-weight: 700;
+  }
+}
