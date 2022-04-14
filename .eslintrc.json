@@ -123,7 +123,8 @@
         "peerDependencies": true
       }
     ],
-    "react/require-default-props": [0]
+    "react/require-default-props": [0],
+    "jsx-a11y/anchor-is-valid": 0
   },
   "settings": {
     "import/resolver": {
