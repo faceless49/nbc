@@ -8,15 +8,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Gallery } from 'components/Gallery';
 import { Header } from 'components/Header';
 import { Nullable, PhotosType, ReturnComponentType } from 'types';
-import { API_URL } from 'vars';
+import { API_URL, LIMIT_PHOTOS } from 'vars';
 
-const Home = ({
-  data,
-  LIMIT_PHOTOS,
-}: {
-  data: PhotosType[];
-  LIMIT_PHOTOS: number;
-}): ReturnComponentType => {
+const Home = ({ data }: { data: PhotosType[] }): ReturnComponentType => {
   const [photos, setPhotos] = useState<PhotosType[]>(data);
   const [fetching, setFetching] = useState<boolean>(true);
   const [totalCount, setTotalCount] = useState<number>(LIMIT_PHOTOS);
@@ -64,8 +58,6 @@ const Home = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const LIMIT_PHOTOS = 20;
-
   const res = await fetch(`${API_URL}photos?_limit=${LIMIT_PHOTOS}`);
   const data: PhotosType[] = await res.json();
 
