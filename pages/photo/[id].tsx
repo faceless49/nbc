@@ -42,8 +42,6 @@ const PhotoPage: FC<PhotoPageProps> = ({ profile, data }): ReturnComponentType =
 
 export default PhotoPage;
 
-
-
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const responseProfile = await fetch(`${API_URL}photos/${params?.id}`);
   const profile: PhotosType = await responseProfile.json();

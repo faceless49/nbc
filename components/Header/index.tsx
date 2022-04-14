@@ -1,10 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { PageHeader } from 'antd';
+import { PageHeader } from "antd";
 
-import styles from './Header.module.scss';
-
-import { ReturnComponentType } from 'types';
+import { ReturnComponentType } from "types";
 
 type HeaderProps = {
   onPrevPageClick?: () => void;
@@ -15,9 +13,5 @@ export const Header: FC<HeaderProps> = ({
   onPrevPageClick,
   title,
 }): ReturnComponentType => (
-  <PageHeader
-    className={styles['site-page-header']}
-    onBack={onPrevPageClick}
-    title={title}
-  />
+  <PageHeader className="site-page-header" onBack={onPrevPageClick} title={title} />
 );
