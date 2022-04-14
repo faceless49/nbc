@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
-import { PageHeader } from "antd";
+import { PageHeader } from 'antd';
 
-import { ReturnComponentType } from "types";
+import { ReturnComponentType } from 'types';
 
 type HeaderProps = {
   onPrevPageClick?: () => void;
