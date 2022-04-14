@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 
 import { PageHeader } from 'antd';
 
+import styles from './Header.module.scss';
+
 import { ReturnComponentType } from 'types';
 
 type HeaderProps = {
@@ -14,9 +16,8 @@ export const Header: FC<HeaderProps> = ({
   title,
 }): ReturnComponentType => (
   <PageHeader
-    className="site-page-header"
+    className={styles['site-page-header']}
     onBack={onPrevPageClick}
     title={title}
-    style={{ display: 'flex', alignItems: 'center', maxWidth: '300px', fontWeight: 700 }}
   />
 );
