@@ -12,12 +12,12 @@ import Error from 'pages/404';
 import { CommentsType, PhotosType, ReturnComponentType } from 'types';
 import { API_URL } from 'vars';
 
-type PhotoPropsType = {
+type PhotoPageProps = {
   profile: PhotosType;
   data: CommentsType[];
 };
 
-const Photo: FC<PhotoPropsType> = ({ profile, data }): ReturnComponentType => {
+const PhotoPage: FC<PhotoPageProps> = ({ profile, data }): ReturnComponentType => {
   const { title, url } = profile;
   const router = useRouter();
 
@@ -26,7 +26,7 @@ const Photo: FC<PhotoPropsType> = ({ profile, data }): ReturnComponentType => {
   }
 
   return (
-    <div className={styles.profile_inner}>
+    <article className={styles.profile_inner}>
       <Header title={title} onPrevPageClick={() => router.push('/')} />
       <Image
         className={styles.profile_avatar}
@@ -36,11 +36,11 @@ const Photo: FC<PhotoPropsType> = ({ profile, data }): ReturnComponentType => {
         height={600}
       />
       <Comments comments={data} />
-    </div>
+    </article>
   );
 };
 
-export default Photo;
+export default PhotoPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const responseProfile = await fetch(`${API_URL}photos/${params?.id}`);

@@ -8,15 +8,13 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Gallery } from 'components/Gallery';
 import { Header } from 'components/Header';
 import { Nullable, PhotosType, ReturnComponentType } from 'types';
-import { API_URL, LIMIT_PHOTOS } from 'vars';
+import { API_URL, LIMIT_PHOTOS, NEXT_COUNT_VALUE } from 'vars';
 
 const Home = ({ data }: { data: PhotosType[] }): ReturnComponentType => {
   const [photos, setPhotos] = useState<PhotosType[]>(data);
   const [fetching, setFetching] = useState<boolean>(true);
   const [totalCount, setTotalCount] = useState<number>(LIMIT_PHOTOS);
   const [maxCount, setMaxCount] = useState<number | null>();
-
-  const NEXT_COUNT_VALUE = 10;
 
   const getMorePhotos = async (): Promise<Nullable<void>> => {
     try {

@@ -4,11 +4,11 @@ import styles from './Comments.module.scss';
 
 import { CommentsType, ReturnComponentType } from 'types';
 
-type CommentsPropsType = {
+type CommentsProps = {
   comments: CommentsType[];
 };
 
-export const Comments: FC<CommentsPropsType> = ({ comments }): ReturnComponentType => (
+export const Comments: FC<CommentsProps> = ({ comments }): ReturnComponentType => (
   <>
     {comments.map(({ body, name, id }) => (
       <div key={id} className={styles.comments_wrap}>

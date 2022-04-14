@@ -4,12 +4,12 @@ import { PageHeader } from 'antd';
 
 import { ReturnComponentType } from 'types';
 
-type SideBarPropsType = {
+type HeaderProps = {
   onPrevPageClick?: () => void;
   title: string;
 };
 
-export const Header: FC<SideBarPropsType> = ({
+export const Header: FC<HeaderProps> = ({
   onPrevPageClick,
   title,
 }): ReturnComponentType => (
