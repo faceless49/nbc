@@ -1,3 +1,5 @@
+import { ParsedUrlQuery } from 'querystring';
+
 import React, { FC } from 'react';
 
 import { GetServerSideProps } from 'next';
@@ -6,25 +8,24 @@ import { useRouter } from 'next/router';
 
 import styles from './Photo.module.scss';
 
+import { profileApi } from 'api/profileApi';
 import { Comments } from 'components/Comments';
 import { Header } from 'components/Header';
 import Error from 'pages/404';
 import { CommentsType, PhotosType, ReturnComponentType } from 'types';
-import { API_URL } from 'vars';
 
 type PhotoPageProps = {
   profile: PhotosType;
-  data: CommentsType[];
+  comments: CommentsType[];
 };
 
-const PhotoPage: FC<PhotoPageProps> = ({ profile, data }): ReturnComponentType => {
+const PhotoPage: FC<PhotoPageProps> = ({ profile, comments }): ReturnComponentType => {
   const { title, url } = profile;
   const router = useRouter();
 
   if (!profile) {
     return <Error />;
   }
-
   return (
     <article className={styles.profile_inner}>
       <Header title={title} onPrevPageClick={() => router.push('/')} />
@@ -35,24 +36,25 @@ const PhotoPage: FC<PhotoPageProps> = ({ profile, data }): ReturnComponentType =
         width={600}
         height={600}
       />
-      <Comments comments={data} />
+      <Comments comments={comments} />
     </article>
   );
 };
 
 export default PhotoPage;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const responseProfile = await fetch(`${API_URL}photos/${params?.id}`);
-  const profile: PhotosType = await responseProfile.json();
+type Params = ParsedUrlQuery & {
+  id: string;
+};
 
-  const responseData = await fetch(`${API_URL}comments?postId=${params?.id}`);
-  const data: CommentsType[] = await responseData.json();
-
+export const getServerSideProps: GetServerSideProps = async context => {
+  const { id } = context.params as Params;
+  const profile: PhotosType = await profileApi.getProfile(id);
+  const comments: CommentsType[] = await profileApi.getComments(id);
   return {
     props: {
       profile,
-      data,
+      comments,
     },
   };
 };
