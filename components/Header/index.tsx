@@ -8,6 +8,10 @@ type HeaderProps = {
   onPrevPageClick?: () => void;
   title: string;
 };
+/**
+ * Component for pages (antd component) with props title
+ * @component
+ */
 
 export const Header: FC<HeaderProps> = ({
   onPrevPageClick,

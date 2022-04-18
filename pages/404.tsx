@@ -3,6 +3,12 @@ import { useRouter } from 'next/router';
 
 import { ReturnComponentType } from 'types';
 
+/**
+ *
+ * @component
+ * Error Page component
+ */
+
 const Error = (): ReturnComponentType => {
   const router = useRouter();
 

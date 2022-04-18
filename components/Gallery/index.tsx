@@ -13,6 +13,12 @@ type GalleryProps = {
   photos: PhotosType[];
 };
 
+/**
+ * Component for showing photos (antd component) on the starter page.
+ * @component
+ *
+ */
+
 export const Gallery: FC<GalleryProps> = ({ photos }) => (
   <nav>
     <Row gutter={[GUTTER_COLUMN, GUTTER_ROW]}>

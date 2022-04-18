@@ -13,10 +13,16 @@ import { NEXT_COUNT_VALUE } from 'vars';
 
 const Home: NextPage<{ data: PhotosType[] }> = ({ data }) => {
   const [photos, setPhotos] = useState<PhotosType[]>(data);
-  const [fetching, setFetching] = useState<boolean>(true);
+
+  const [isFetching, setIsFetching] = useState<boolean>(true);
   const [totalCount, setTotalCount] = useState<number>(LIMIT_STARTED_PHOTOS);
   const [maxCount, setMaxCount] = useState<number | null>();
 
+  /**
+   * @async
+   * @function get new data(photos array) from Api endpoint after scroll and set them to state
+   * @return Promise
+   */
   const getMorePhotos = async (): Promise<Nullable<void>> => {
     const response = await photosApi.getMorePhotos(photos);
     try {
@@ -30,7 +36,7 @@ const Home: NextPage<{ data: PhotosType[] }> = ({ data }) => {
 
   useEffect(() => {
     if (totalCount === maxCount) {
-      setFetching(false);
+      setIsFetching(false);
     }
   }, [totalCount]);
 
@@ -41,7 +47,7 @@ const Home: NextPage<{ data: PhotosType[] }> = ({ data }) => {
       <InfiniteScroll
         dataLength={photos.length}
         next={getMorePhotos}
-        hasMore={fetching}
+        hasMore={isFetching}
         loader={<Spin size="default" />}
         endMessage={<p>YOU ARE AWESOME!</p>}
       >

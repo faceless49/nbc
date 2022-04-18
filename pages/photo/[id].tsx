@@ -19,10 +19,22 @@ type PhotoPageProps = {
   comments: CommentsType[];
 };
 
+/**
+ * Main presentation page with SSR.
+ * @component
+ */
+
 const PhotoPage: FC<PhotoPageProps> = ({ profile, comments }): ReturnComponentType => {
+  /**
+   * @constant
+   */
   const { title, url } = profile;
+
   const router = useRouter();
 
+  /**
+   * If we don't have profile show Error Page
+   */
   if (!profile) {
     return <Error />;
   }
@@ -48,8 +60,17 @@ type Params = ParsedUrlQuery & {
 };
 
 export const getServerSideProps: GetServerSideProps = async context => {
+  /**
+   * @constant id of profile from URI
+   */
   const { id } = context.params as Params;
+  /**
+   * @constant Get profile from API request
+   */
   const profile: PhotosType = await profileApi.getProfile(id);
+  /**
+   * @constant Get comments from API request
+   */
   const comments: CommentsType[] = await profileApi.getComments(id);
   return {
     props: {
