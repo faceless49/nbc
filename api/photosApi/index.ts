@@ -1,6 +1,10 @@
 import { instance, LIMIT_LOAD_PHOTOS, LIMIT_STARTED_PHOTOS } from 'api/apiConfig';
 import { PhotosType } from 'types';
 
+/**
+ *
+ */
+
 export const photosApi = {
   loadPhotos() {
     return instance
