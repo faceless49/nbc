@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 
 import { Spin } from 'antd';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { Gallery } from 'components/Gallery';
 import { Header } from 'components/Header';
-import { Nullable, PhotosType, ReturnComponentType } from 'types';
+import { Nullable, PhotosType } from 'types';
 import { API_URL, LIMIT_PHOTOS, NEXT_COUNT_VALUE } from 'vars';
 
-const Home = ({ data }: { data: PhotosType[] }): ReturnComponentType => {
+const Home: NextPage<{ data: PhotosType[] }> = ({ data }) => {
   const [photos, setPhotos] = useState<PhotosType[]>(data);
   const [fetching, setFetching] = useState<boolean>(true);
   const [totalCount, setTotalCount] = useState<number>(LIMIT_PHOTOS);
